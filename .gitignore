@@ -1,0 +1,44 @@
+# Python & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+.env/
+
+# IDEs & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Ultralytics / YOLO Cache & Run Outputs
+*.cache
+runs/
+*.log
+
+# Large Datasets (Excluding from Git to respect 100 MB limit)
+train/
+valid/
+test/
+
+# Checkpoint Weights (YOLO .pt files)
+*.pt
+weights/
+
+# Large Video / Image Demo Assets
+*.mp4
+*.avi
+*.mov
+*.mkv

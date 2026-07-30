@@ -1,0 +1,28 @@
+# Default configuration for YOLOv8 Fire Detection training and inference
+model: "yolov8s.pt"
+data: "configs/data.yaml"
+
+# Training parameters
+train:
+  epochs: 40
+  imgsz: 640
+  batch: 8
+  device: 0               # 0 for GPU, 'cpu' for CPU
+  workers: 0              # 0 for Windows compatibility
+  cache: false
+  optimizer: "AdamW"
+  lr0: 0.001
+  weight_decay: 0.0005
+  patience: 30
+  pretrained: true
+  project: "Fire_Detection"
+  name: "YOLOv8s_Fire"
+  exist_ok: true
+
+# Inference parameters
+predict:
+  conf: 0.35              # Confidence threshold
+  iou: 0.70               # NMS IoU threshold
+  show: false             # Show GUI window during prediction
+  save: true              # Save annotated output
+  stream: false           # Generator streaming mode

@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fire-detection-yolov8"
+version = "1.0.0"
+description = "Real-time Fire Detection using YOLOv8 with modular CLI tools and Jupyter notebook demos."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "Shivansh Arora", email = "arorashivansh20@gmail.com" }
+]
+keywords = ["yolov8", "fire-detection", "computer-vision", "deep-learning", "ultralytics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "ultralytics>=8.2.0",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "opencv-python>=4.8.0",
+    "matplotlib>=3.7.0",
+    "numpy>=1.23.0",
+    "pyyaml>=6.0",
+    "psutil>=5.8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/arorashivansh/fire-detection-yolov8"
+
+[tool.setuptools.packages.find]
+include = ["src*"]
