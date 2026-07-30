@@ -36,6 +36,20 @@ After fine-tuning **YOLOv8s** for **40 epochs** on the Fire Detection dataset, t
 
 ---
 
+## 🖼️ Sample Predictions & Training Results
+
+### Real-Time Fire Detections
+The model identifies active flames and smoke in real time with high confidence:
+
+![Sample Prediction Output](examples/output/sample_prediction.jpg)
+
+### Training Evaluation Curves
+Validation curves demonstrate robust convergence across Precision, Recall, and mAP:
+
+![Training Curves](examples/output/training_curves.png)
+
+---
+
 ## 📂 Repository Structure
 
 ```text
@@ -43,6 +57,9 @@ fire-detection-yolov8/
 ├── configs/
 │   ├── data.yaml                 # YOLOv8 dataset configuration file
 │   └── default.yaml              # Default training and inference hyperparameters
+├── examples/
+│   ├── input/                    # Sample fire video and images for instant testing
+│   └── output/                   # Sample annotated detection results and training curves
 ├── notebooks/
 │   └── fire_detection_demo.ipynb # Interactive demo and exploration notebook
 ├── src/
@@ -53,7 +70,9 @@ fire-detection-yolov8/
 │   ├── predict.py                # Video / Image / Webcam inference CLI script
 │   ├── evaluate.py               # Validation and mAP metric evaluation CLI script
 │   └── utils.py                  # PyTorch hardware checks and helpers
-├── .gitignore                    # Prevents datasets and large binaries from bloating Git
+├── weights/
+│   └── best.pt                   # Fine-tuned YOLOv8 fire detection model checkpoint
+├── .gitignore                    # Safe gitignore (excludes heavy datasets & >100MB binaries)
 ├── pyproject.toml                # Modern Python project packaging metadata
 ├── requirements.txt              # Dependency specification
 ├── LICENSE                       # MIT License
@@ -66,8 +85,8 @@ fire-detection-yolov8/
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/arorashivansh/fire-detection-yolov8.git
-   cd fire-detection-yolov8
+   git clone https://github.com/Shivansh191005/fire-detection.git
+   cd fire-detection
    ```
 
 2. **Create a Virtual Environment (Optional but Recommended)**:
@@ -88,28 +107,32 @@ fire-detection-yolov8/
 
 ## ⚡ Quickstart Usage
 
-### 1. Check Hardware & Dataset Statistics
-Run the dataset utility to inspect image and label distribution:
+### 1. Running Inference on Sample Input
+We have included a sample fire video and images in `examples/input/` and the trained weights in `weights/best.pt` so you can test the model immediately:
+```bash
+python -m src.predict --source examples/input/sample_fire_video.mp4 --model weights/best.pt --conf 0.35
+```
+You can also run inference on the sample images:
+```bash
+python -m src.predict --source examples/input/sample_fire_1.jpg --model weights/best.pt --conf 0.35
+```
+
+### 2. Check Hardware & Dataset Statistics
+Inspect your PyTorch CUDA GPU availability and dataset distribution:
 ```bash
 python -m src.dataset
 ```
 
-### 2. Training the Model
+### 3. Training a Model from Scratch
 Fine-tune a YOLOv8 model on your custom fire dataset:
 ```bash
 python -m src.train --epochs 40 --batch 8 --imgsz 640 --device 0
 ```
 
-### 3. Running Real-Time Prediction
-Run inference on a video, directory of images, or webcam (use `--source 0` for webcam):
-```bash
-python -m src.predict --source path/to/video.mp4 --conf 0.35 --save
-```
-
 ### 4. Evaluating Model Metrics
 Validate the trained weights against the validation set:
 ```bash
-python -m src.evaluate --split val
+python -m src.evaluate --model weights/best.pt --split val
 ```
 
 ---

@@ -33,12 +33,13 @@ train/
 valid/
 test/
 
-# Checkpoint Weights (YOLO .pt files)
+# Checkpoint Weights (YOLO .pt files - except our 22MB fine-tuned best.pt checkpoint)
 *.pt
-weights/
+!weights/best.pt
 
-# Large Video / Image Demo Assets
+# Large Video / Image Demo Assets (except sample assets in examples/)
 *.mp4
 *.avi
 *.mov
 *.mkv
+!examples/**

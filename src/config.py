@@ -26,6 +26,7 @@ DEFAULT_YAML_PATH = CONFIGS_DIR / "default.yaml"
 
 # Default Model Checkpoints
 PRETRAINED_MODEL = ROOT_DIR / "yolov8s.pt"
+WEIGHTS_DIR_MODEL = ROOT_DIR / "weights" / "best.pt"
 TRAINED_BEST_MODEL = RUNS_DIR / "detect" / "Fire_Detection" / "YOLOv8s_Fire" / "weights" / "best.pt"
 
 
@@ -40,10 +41,12 @@ def get_default_config() -> dict:
 def get_model_path(custom_path: str = None) -> str:
     """
     Returns the path to the model weights to use.
-    Prioritizes custom_path if provided, then trained best.pt, then yolov8s.pt.
+    Prioritizes custom_path if provided, then weights/best.pt, then trained best.pt, then yolov8s.pt.
     """
     if custom_path and os.path.exists(custom_path):
         return custom_path
+    if WEIGHTS_DIR_MODEL.exists():
+        return str(WEIGHTS_DIR_MODEL)
     if TRAINED_BEST_MODEL.exists():
         return str(TRAINED_BEST_MODEL)
     if PRETRAINED_MODEL.exists():

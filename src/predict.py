@@ -11,6 +11,9 @@ from src.config import get_model_path, get_default_config, ROOT_DIR
 
 def get_default_source() -> str:
     """Find a default test video or image directory."""
+    sample_video = ROOT_DIR / "examples" / "input" / "sample_fire_video.mp4"
+    if sample_video.exists():
+        return str(sample_video)
     default_video = ROOT_DIR / "5622766-uhd_3840_2160_30fps.mp4"
     if default_video.exists():
         return str(default_video)
